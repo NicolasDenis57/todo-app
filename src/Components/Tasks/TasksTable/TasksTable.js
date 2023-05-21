@@ -23,7 +23,7 @@ const TasksTable = () => {
                         <tbody>
                               {
                                     tasksData && tasksData.tasks && tasksData.tasks.map((task, index) => (
-                                          <TaskRow key={ Date.parse(task.createdAt) - index } task={ task } />
+                                          <TaskRow key={ Date.parse(task.createdAt) - index } task={ task } index={ index } />
                                     ))
                               }
                         </tbody>

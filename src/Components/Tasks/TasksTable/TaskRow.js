@@ -1,4 +1,14 @@
-const TaskRow = ({ task }) => {
+import { useContext } from "react";
+import { TasksContext } from "../../../Contexts/TasksContext";
+import Button from "../../UI/Button/Button";
+
+const TaskRow = ({ task, index }) => {
+
+      const { removeTask } = useContext(TasksContext);
+
+      const handleDeleteTask = () => {
+            removeTask(index);
+      }
 
       return (
             <tr>
@@ -18,7 +28,7 @@ const TaskRow = ({ task }) => {
                         { task.time }
                   </td>
                   <td>
-                        ACTIONS
+                        <Button variant="danger" onClick={ handleDeleteTask }>Delete</Button>
                   </td>
             </tr>
       );

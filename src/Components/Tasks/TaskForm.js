@@ -72,7 +72,7 @@ const TaskForm = ({ closeModal }) => {
                         name='description'
                         placeholder='Write your description here...'
                         label='Description'
-                        value= { formValue.descriptionn }
+                        value= { formValue.description }
                         onChange={ (value) => setFormValue({ ...formValue, description: value }) }
                         validation={ {
                               required:false,
