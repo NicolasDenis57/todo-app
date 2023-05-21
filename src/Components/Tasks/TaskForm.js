@@ -4,28 +4,33 @@ import TextField from "../UI/Forms/TextField";
 import TextAreaField from "../UI/Forms/TextAreaField";
 import Button from "../UI/Button/Button";
 
-const TaskForm = ({ closeModal }) => {
+const TaskForm = ({ closeModal, value, index }) => {
 
-      const [ formValue, setFormValue ] = useState({
+      const [ formValue, setFormValue ] = useState(value ? value : {
             title: '',
             description: '',
+
       });
 
       const [ invalidFields, setInvalidFields ] = useState([]);
 
-      const { addTask } = useContext(TasksContext);
+      const { addTask, editTask } = useContext(TasksContext);
 
       const handleSubmit = (event) => {
             event.preventDefault();
-            // Empêcher la soumission / la création d'une tâche s'il y a des erreurs
             if (invalidFields.length > 0) {
                   alert('There are errors in the form.');
                   return;
             }
-            addTask({
-                  ...formValue,
-                  createdAt: new Date()
+
+            if (value && !isNaN(+index)) {
+                  editTask({ task: formValue, taskIndex: index });
+            } else {
+                  addTask({
+                        ...formValue,
+                        createdAt: new Date()
             });
+      }
             closeModal();
       }
 

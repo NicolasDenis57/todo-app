@@ -37,6 +37,18 @@ const tasksReducer = (state, action) => {
             };
       }
 
+      if (action.type === 'EDIT_TASK' && action.value && !isNaN(+action.value.taskIndex)) {
+            const tasks = [...state.tasks];
+            tasks[+action.value.taskIndex] = {
+                  ...tasks[+action.value.taskIndex],
+                  ...action.value.task
+            };
+            return {
+                  tasks,
+                  count: tasks.length
+            }
+      }
+
       return state ? state : INITIAL_TASKS;
 }
 
@@ -52,10 +64,15 @@ const TasksContextProvider = ({ children }) => {
             dispatchTasks({ type: 'REMOVE_TASKS', value: taskIndex });
       }
 
+      const editTask = ({taskIndex, task}) => {
+            dispatchTasks({ type : 'EDIT_TASK', value: { taskIndex, task }})
+      }
+
       const value = {
             tasksData,
             addTask,
             removeTask,
+            editTask
       };
 
       return (
