@@ -3,6 +3,7 @@ import { TasksContext } from "../../Contexts/TasksContext"
 import TextField from "../UI/Forms/TextField";
 import TextAreaField from "../UI/Forms/TextAreaField";
 import Button from "../UI/Button/Button";
+import PropTypes from "prop-types";
 
 const TaskForm = ({ closeModal, value, index }) => {
 
@@ -93,3 +94,17 @@ const TaskForm = ({ closeModal, value, index }) => {
 };
 
 export default TaskForm;
+
+TaskForm.propTypes = { 
+      closeModal: PropTypes.func.isRequired,
+       value : PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired,
+       }), 
+       index: PropTypes.number
+};
+
+TaskForm.defaultProps = {
+      value: null,
+      index: null
+};

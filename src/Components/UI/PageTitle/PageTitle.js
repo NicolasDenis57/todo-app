@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 const PageTitle = ({ count, title }) => {
 
        return (
@@ -8,3 +10,12 @@ const PageTitle = ({ count, title }) => {
 };
 
 export default PageTitle;
+
+PageTitle.propTypes = {
+       count: PropTypes.number.isRequired ,
+       title: PropTypes.string,
+}
+
+PageTitle.defaultProps = {
+       title: 'Test !!!!',
+};
