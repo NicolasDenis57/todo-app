@@ -14,7 +14,7 @@ const Tasks = () => {
        const { tasksData } = useContext(TasksContext);
        
        return (
-              <>
+              <section className='container' style={{ position: 'relative'}}>
                      <div className={style['tasks-header']}>
                             <PageTitle count={ tasksData.count } title={ `Task${tasksData.count > 1 ? 's' : ''}` } />
                             <Button onClick={ () => setIsNewTaskModalOpen(true) }>New Task</Button>
@@ -23,7 +23,7 @@ const Tasks = () => {
                      <Modal isOpen={ isNewTaskModalOpen } setIsOpen={ setIsNewTaskModalOpen }>
                             <TaskForm closeModal={ () => setIsNewTaskModalOpen(false) }/>
                      </Modal>
-              </>
+              </section>
        );
 };
 
