@@ -8,17 +8,22 @@ const TaskRow = ({ task, index }) => {
       
       const [ isEditTaskModalOpen, setIsEditTaskModalOpen ] = useState(false);
 
-      const { removeTask } = useContext(TasksContext);
+      const { removeTask, toggleTaskIsDone } = useContext(TasksContext);
 
       const handleDeleteTask = () => {
             removeTask(index);
+      }
+
+      const handleChangeStatus = (event) => {
+            const value = event.target.checked; 
+            toggleTaskIsDone({ taskIndex: index, isDone: value })
       }
 
       return (
             <>
                   <tr>
                         <td>
-                              <input type="checkbox"/>
+                              <input type="checkbox" checked={ task.isDone } onChange={ handleChangeStatus }/>
                         </td>
                         <td>
                               { task.title }

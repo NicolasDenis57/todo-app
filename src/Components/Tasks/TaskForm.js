@@ -28,7 +28,8 @@ const TaskForm = ({ closeModal, value, index }) => {
             } else {
                   addTask({
                         ...formValue,
-                        createdAt: new Date()
+                        createdAt: new Date(),
+                        isDone: false
             });
       }
             closeModal();
